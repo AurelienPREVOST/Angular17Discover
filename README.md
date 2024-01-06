@@ -8,7 +8,7 @@ Open Class Room tutorial is deprecated and work on Angular V12. In January 2024 
 
 First check your node version and install it if not on your setup allready.
 Then install Angular in following this command line:
-```npm i -g @angular/cli
+```npm i -g @angular/cli```
 
 ![installation angular](https://github.com/AurelienPREVOST/Angular17Discover/assets/102169301/5b17d098-4e3b-4826-be1b-b6da72e16e36)
 

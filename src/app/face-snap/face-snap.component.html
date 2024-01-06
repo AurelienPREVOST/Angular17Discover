@@ -1,0 +1,12 @@
+<!-- "String interpolation" in angular use content from ts component file display between "{{xxx}}" -->
+<div class="face-snap-card">
+    <h2>{{ title }}</h2> 
+    <p>Mis en ligne le {{ createdDate }}</p>
+    <!-- "attribute binding" with "[]" around attribute with propertie name inside-->
+    <img [src]="imageUrl" [alt]="title" /> <!-- <img src={{imageUrl}} alt={{title}} />  work to but must must be avoir because if not string value it aint gonna work -->
+    <p>{{ description }}</p>
+    <p>
+        <button (click)="onSnap()">{{ buttonText }}</button>
+        snaps : {{ snaps }}
+    </p>
+</div>

@@ -1,36 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { CommonModule } from '@angular/common';  // Import CommonModule pour utiliser *ngIf. Pourtant deja dans app.component.ts *??*
+import { FaceSnap } from '../models/face-snap.model';
+import { FaceSnapsService } from '../services/face-snaps.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-face-snap',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],  // Inclure CommonModule pour utiliser les *ngIf dans le html
   templateUrl: './face-snap.component.html',
   styleUrl: './face-snap.component.scss'
 })
 export class FaceSnapComponent implements OnInit{ //"!" on each properties to avoid TS alert
-  title!: string;
-  description!: string;
-  createdDate!: Date;
-  snaps!: number;
-  imageUrl!: string;
+  @Input() faceSnap!: FaceSnap;
+  // Input est un décorateur qui permet l'appel de la classe (import from angular)
+  // Rend possible l'injection de FaceSnap en l'important dans ce fichier et en l'initialisant comme ici avec @Input
   buttonText!: string;
 
+  constructor(private faceSnapsService: FaceSnapsService,
+              private router: Router) {}
+
   ngOnInit(): void { //maybe ": void" should be delete
-      this.title = 'Learning a New Frame Work';
-      this.description = 'Quand tu commence à 0% sur OCR et vois "10heures pour les bases"';
-      this.createdDate = new Date();
-      this.snaps = 6;
-      this.imageUrl = "https://media.istockphoto.com/id/917512108/fr/photo/homme-daffaires-et-labyrinthe.jpg?s=1024x1024&w=is&k=20&c=rALN9DLXc53QA8lxAqY-GP36jeE_XY-vohPzvONN4YY="
       this.buttonText = "Oh Snap!"
   }
 
   onSnap() {
     if(this.buttonText === "Oh Snap!") {
-      this.snaps++;
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
       this.buttonText = "Oops, unSnap!"
     } else {
-      this.snaps--;
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
       this.buttonText = "Oh Snap!"
     }
+  }
+
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`face/${this.faceSnap.id}`)
   }
 }

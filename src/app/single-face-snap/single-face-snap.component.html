@@ -1,0 +1,16 @@
+<!-- "String interpolation" in angular use content from ts component file display between "{{xxx}}" -->
+<div class="face-snap-card" [ngClass]="{ snapped : buttonText === 'Oops, unSnap!' }">
+    <h2>{{ faceSnap.title | uppercase }}</h2> 
+    <a routerLink='../'>GO BACK</a> 
+    <!-- on aurait aussi pu mettre /face, mais sans le / devant face on se dirige vers root/face/id/face-->
+    <p>{{ 336.54 }} {{ 'EUR' }}</p>
+    <p>Mis en ligne le {{ faceSnap.createdDate | date: 'd MMMM yyyy' }}</p>
+    <!-- "attribute binding" with "[]" around attribute with propertie name inside-->
+    <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" /> <!-- <img src={{imageUrl}} alt={{title}} />  work to but must must be avoir because if not string value it aint gonna work -->
+    <p>{{ faceSnap.description }}</p>
+    <p *ngIf="faceSnap.location">Photo prise à : {{ faceSnap.location }}</p>
+    <p>
+        <button (click)="onSnap()">{{ buttonText }}</button>
+        <span [ngStyle]="{color: 'rgb(0,' + faceSnap.snaps +',0)'}">snaps : {{ faceSnap.snaps }}</span>
+    </p>
+</div>

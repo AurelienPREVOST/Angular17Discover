@@ -1,2 +1,18 @@
-<app-face-snap></app-face-snap>
-<app-face-snap></app-face-snap>
+<app-header></app-header>
+<nav>
+    <a class="button" 
+       routerLink=""
+       routerLinkActive="activebutton"
+       [routerLinkActiveOptions]="{ exact: true }"
+       ariaCurrentWhenActive="page">
+       Root
+    </a>
+    <a class="button" 
+       routerLink="/face" 
+       routerLinkActive="activebutton" 
+       ariaCurrentWhenActive="page">
+       FaceSnaps
+    </a>
+</nav>
+<!-- <app-face-snap-list></app-face-snap-list> -->
+<router-outlet></router-outlet>
